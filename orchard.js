@@ -51,7 +51,14 @@ const pinkPrice = .55
 
 // CODE HERE
 
+// Create a variable to combine the acreage count
+let totalAcres = 0;
 
+// Combine the numbers store in each array and add them to the totalAcres variable
+for(let i = 0; i <= 6; i++){
+    totalAcres += fujiAcres[i] + galaAcres[i] + pinkAcres[i];
+}
+console.log(totalAcres, "acres picked in total.");
 
 
 
@@ -68,6 +75,11 @@ const pinkPrice = .55
 */
 
 // CODE HERE
+
+// Figure the average number of acres picked each day
+let averageDailyAcres = totalAcres / 7;
+
+console.log(averageDailyAcres, "average acres picked per day.");
 
 
 
@@ -107,6 +119,13 @@ let days = 0
 
 // CODE HERE
 
+// Figure out how many more days are required to complete the apple harvest
+while(acresLeft > 0){
+    acresLeft -= averageDailyAcres;
+    days++;
+}
+
+console.log(days, "left of the apple harvest.");
 
 
 // PROBLEM 4
@@ -135,9 +154,20 @@ let days = 0
 
 // CODE HERE
 
-// let fujiTons =
-// let galaTons =
-// let pinkTons =
+let fujiTons = [];
+let galaTons = [];
+let pinkTons = [];
+
+// figure out how many tons of apples have been harvested each day this week
+for(let i = 0; i <= 6; i++){
+    fujiTons.push(fujiAcres[i] * 6.5);
+    galaTons.push(galaAcres[i] * 6.5);
+    pinkTons.push(pinkAcres[i] * 6.5);
+}
+
+console.log("Tons of fuji apples per day: ", fujiTons);
+console.log("Tons of gala apples per day: ", galaTons);
+console.log("Tons of pink apples per day: ", pinkTons);
 
 
 
@@ -162,11 +192,20 @@ let days = 0
 
 // CODE HERE 
 
-// let fujiPounds =
-// let galaPounds =
-// let pinkPounds =
+let fujiPounds = 0;
+let galaPounds = 0;
+let pinkPounds = 0;
 
+// find out how many pounds of each apple variety has been harvested, by taking how many tons were picked on each day and multiplying by 2000
+for(let i = 0; i <= 6; i++){
+    fujiPounds += fujiTons[i] * 2000;
+    galaPounds += galaTons[i] * 2000;
+    pinkPounds += pinkTons[i] * 2000;
+}
 
+console.log(fujiPounds, " total pounds of fuji apples.")
+console.log(galaPounds, " total pounds of gala apples.")
+console.log(pinkPounds, " total pounds of pink apples.")
 
 
 
@@ -189,9 +228,16 @@ let days = 0
 
 // CODE HERE
 
-// let fujiProfit =
-// let galaProfit =
-// let pinkProfit =
+// Multiply total pounds of each variety of apple by the amount each variety is sold per pound
+let fujiProfit = fujiPounds * fujiPrice;
+let galaProfit = galaPounds * galaPrice;
+let pinkProfit = pinkPounds * pinkPrice;
+
+console.log("$", fujiProfit, "net profit from selling the fuji apples picked this week.");
+console.log("$", galaProfit, "net profit from selling the gala apples picked this week.");
+console.log(`$ ${pinkProfit} net profit from selling the pink apples picked this week.`);
+
+
 
 
 
@@ -209,3 +255,8 @@ let days = 0
 */
 
 // CODE HERE
+
+// find out the total profit from the apples picked this week
+let totalProfit = fujiProfit + galaProfit + pinkProfit;
+
+console.log("$", totalProfit, "net profit from the apples picked this week.");
